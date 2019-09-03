@@ -1,8 +1,14 @@
 package ru.vasic2000.myweatherapp;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.EditText;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,8 +36,35 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    void showInputDialog(){
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.change_city) {
+        showInputDialog();
+        return true;
+        }
+        return false;
+    }
 
+    void showInputDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(getString(R.string.change_city_dialog));
+        final EditText input = new EditText(this);
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        builder.setView(input);
+        builder.setPositiveButton(POSITIVE_BUTTON_TEXT, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                changeCity(input.getText().toString());
+            }
+        });
+        builder.show();
+
+    }
+
+    private void changeCity(String city) {
+        WeatherFragment weatherFragment = (WeatherFragment) getSupportFragmentManager().findFragmentByTag(WEATHER_FRAGMENT_TAG);
+        weatherFragment.changeCity(city);
+        cityPreference.setCity(city);
     }
 
 }

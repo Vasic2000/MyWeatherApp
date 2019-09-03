@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">MyWeatherApp</string>
     <string name="change_city">Change city</string>
+    <string name="change_city_dialog">Change city</string>
+    <string name="open_weather_maps_app_id">dndfnfdn</string>
+    <string name="place_not_found">No Data</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
