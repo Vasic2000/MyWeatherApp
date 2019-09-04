@@ -17,7 +17,7 @@ import org.json.JSONObject;
 public class WeatherFragment extends Fragment {
 
     private static final String LOG_TAG = "WeatherFragment";
-    private static final String FONT_FILENAME = "fonts/weathericons_regular_webfont.ttf";
+    private static final String FONT_FILENAME = "weathericons_regular_webfont.ttf";
 
     private final Handler handler = new Handler();
 
@@ -84,5 +84,9 @@ public class WeatherFragment extends Fragment {
         currentTemperatureTextView = rootView.findViewById(R.id.temperature_field);
         weatherIcon = rootView.findViewById(R.id.weather_icon_field);
         return rootView;
+    }
+
+    public void changeCity(String city) {
+        updateWeatherData(city);
     }
 }
