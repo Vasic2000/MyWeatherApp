@@ -17,7 +17,7 @@ import org.json.JSONObject;
 public class WeatherFragment extends Fragment {
 
     private static final String LOG_TAG = "WeatherFragment";
-    private static final String FONT_FILENAME = "weathericons_regular_webfont.ttf";
+    private static final String FONT_FILENAME = "font/weathericons.ttf";
 
     private final Handler handler = new Handler();
 
