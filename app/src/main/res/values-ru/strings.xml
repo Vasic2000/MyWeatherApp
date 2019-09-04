@@ -3,6 +3,6 @@
     <string name="app_name">Мои погоды</string>
     <string name="change_city">Выбрать город</string>
     <string name="change_city_dialog">Поменять город</string>
-    <string name="open_weather_maps_app_id">dndfnfdn</string>
+    <string name="open_weather_maps_app_id">07795d846f9c55c418379de9d14962e7</string>
     <string name="place_not_found">Нет данных</string>
 </resources>

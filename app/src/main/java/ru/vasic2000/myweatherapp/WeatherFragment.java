@@ -11,8 +11,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
-
 import org.json.JSONObject;
+
+import java.util.Date;
+import java.util.Locale;
 
 public class WeatherFragment extends Fragment {
 
@@ -68,10 +70,32 @@ public class WeatherFragment extends Fragment {
             JSONObject details = json.getJSONArray("weather").getJSONObject(0);
             JSONObject main = json.getJSONObject("main");
 
+            detailsTextView.setText(json.getString("description").toUpperCase(Locale.US) + "\n" +
+                    "Humidity: " + main.getString("humidity") + "%\n" + main.getString("pressure" + "hpa"));
 
+            currentTemperatureTextView.setText(String.format("%.2f", main.getDouble("temp")) + " °C");
+
+            setWeatherIcon(details.getInt("id"),details.getJSONObject("sys").getLong("sunrise") * 1000,
+                    json.getJSONObject("sys").getLong("sunset") * 1000);
 
         } catch (Exception e) {
             Log.d(LOG_TAG, "One or several data missing");
+        }
+    }
+
+    private void setWeatherIcon(int actualId, long sunrise, long sunset) {
+        int id = actualId / 100;
+        String icon = "";
+
+        if(actualId == 800) {
+            long currentTime = new Date().getTime();
+            if(currentTime > sunrise && currentTime < sunset) {
+                icon = getActivity().getString(R.string.weather_sunny);
+            } else {
+                icon = getActivity().getString(R.string.weather_clear_night);
+            }
+        } else {
+            Log.d(LOG_TAG, "id " + id);
         }
     }
 

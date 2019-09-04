@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     private static final String POSITIVE_BUTTON_TEXT = "Go!";
-    private static final String WEATHER_FRAGMENT_TAG = "Ggggoo!";
+    private static final String WEATHER_FRAGMENT_TAG = "077TAG";
 
     private CityPreference cityPreference;
 
