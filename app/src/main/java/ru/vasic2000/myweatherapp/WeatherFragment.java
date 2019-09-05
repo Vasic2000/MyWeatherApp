@@ -64,19 +64,29 @@ public class WeatherFragment extends Fragment {
     private void renderWeather(JSONObject json) {
         Log.d(LOG_TAG, "json " + json.toString());
         try {
-            cityTextView.setText(json.getString("name").toUpperCase() + "," +
+            cityTextView.setText(json.getString("name").toUpperCase(Locale.US) + "," +
                     json.getJSONObject("sys").getString("country"));
 
             JSONObject details = json.getJSONArray("weather").getJSONObject(0);
             JSONObject main = json.getJSONObject("main");
 
-            detailsTextView.setText(json.getString("description").toUpperCase(Locale.US) + "\n" +
-                    "Humidity: " + main.getString("humidity") + "%\n" + main.getString("pressure" + "hpa"));
+            String st1 = details.getString("description").toUpperCase(Locale.US);
+            String st2 = main.getString("humidity");
+            String st3 = main.getString("pressure");
 
-            currentTemperatureTextView.setText(String.format("%.2f", main.getDouble("temp")) + " °C");
 
-            setWeatherIcon(details.getInt("id"),details.getJSONObject("sys").getLong("sunrise") * 1000,
-                    json.getJSONObject("sys").getLong("sunset") * 1000);
+            detailsTextView.setText(st1 + "\n" +
+                    "Humidity: " + st2 + "%\n" + st3 + "hpa");
+
+            Double temp = main.getDouble("temp") - 273.15;
+
+            currentTemperatureTextView.setText(String.format("%.2f", temp) + " °C");
+
+            int actualId = details.getInt("id");
+            long sunrise = json.getJSONObject("sys").getLong("sunrise")* 1000;
+            long sunset = json.getJSONObject("sys").getLong("sunset") * 1000;
+
+            setWeatherIcon(actualId, sunrise, sunset);
 
         } catch (Exception e) {
             Log.d(LOG_TAG, "One or several data missing");
@@ -95,8 +105,30 @@ public class WeatherFragment extends Fragment {
                 icon = getActivity().getString(R.string.weather_clear_night);
             }
         } else {
-            Log.d(LOG_TAG, "id " + id);
+            switch(id) {
+                case 2:
+                    icon = getActivity().getString(R.string.weather_thunder);
+                    break;
+                case 3:
+                    icon = getActivity().getString(R.string.weather_drizzly);
+                    break;
+                case 5:
+                    icon = getActivity().getString(R.string.weather_rainy);
+                    break;
+                case 6:
+                    icon = getActivity().getString(R.string.weather_snowy);
+                    break;
+                case 7:
+                    icon = getActivity().getString(R.string.weather_foggy);
+                    break;
+                case 8:
+                    icon = getActivity().getString(R.string.weather_cloudy);
+                    break;
+                default:
+                    break;
+            }
         }
+        weatherIcon.setText(icon);
     }
 
     @Override
