@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/city_field"
         android:layout_centerHorizontal="true"
-        android:text="10"
+        android:fontFamily="@font/weathericons"
         android:textSize="@dimen/icon_font_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
