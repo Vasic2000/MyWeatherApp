@@ -10,7 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class Weather_Data_Loader {
-    private static final String OPEN_WEATHER_MAP_API = "http://api.openweathermap.org/data/2.5/weather?q=";
+    private static final String OPEN_WEATHER_MAP_API = "https://api.openweathermap.org/data/2.5/weather?q=";
     private static final String KEY = "APPID";
     private static final String RESPONSE = "cod";
     private static final String NEW_LINE = "\n";
@@ -21,10 +21,10 @@ public class Weather_Data_Loader {
             //URL uri = new URL(String.format(OPEN_WEATHER_MAP_API, city));
 
 
-            URL uri = new URL("http://api.openweathermap.org/data/2.5/weather?q=Moscow&APPID=07795d846f9c55c418379de9d14962e7");
+            URL uri = new URL("https://api.openweathermap.org/data/2.5/weather?q=Moscow&APPID=07795d846f9c55c418379de9d14962e7");
 
             HttpURLConnection connection = (HttpURLConnection) uri.openConnection();
-            connection.addRequestProperty(KEY, context.getString(R.string.open_weather_maps_app_id));
+//            connection.addRequestProperty(KEY, context.getString(R.string.open_weather_maps_app_id));
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             StringBuilder rawData = new StringBuilder(1024);
