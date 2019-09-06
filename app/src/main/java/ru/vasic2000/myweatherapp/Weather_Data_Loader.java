@@ -24,7 +24,7 @@ public class Weather_Data_Loader {
             URL uri = new URL("https://api.openweathermap.org/data/2.5/weather?q=Moscow&APPID=07795d846f9c55c418379de9d14962e7");
 
             HttpURLConnection connection = (HttpURLConnection) uri.openConnection();
-//            connection.addRequestProperty(KEY, context.getString(R.string.open_weather_maps_app_id));
+            //connection.addRequestProperty(KEY, context.getString(R.string.open_weather_maps_app_id));
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             StringBuilder rawData = new StringBuilder(1024);

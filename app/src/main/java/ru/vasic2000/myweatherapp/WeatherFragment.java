@@ -1,6 +1,5 @@
 package ru.vasic2000.myweatherapp;
 
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -11,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+
 import org.json.JSONObject;
 
 import java.util.Date;
@@ -23,7 +23,6 @@ public class WeatherFragment extends Fragment {
 
     private final Handler handler = new Handler();
 
-    private Typeface weatherFont;
     private TextView cityTextView;
     private TextView detailsTextView;
     private TextView currentTemperatureTextView;
@@ -33,7 +32,6 @@ public class WeatherFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         MainActivity weatherActivity = (MainActivity) getActivity();
-        weatherFont = Typeface.createFromAsset(weatherActivity.getAssets(), FONT_FILENAME);
         updateWeatherData(new CityPreference(weatherActivity).getUserPrefereces());
     }
 
