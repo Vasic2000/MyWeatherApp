@@ -19,7 +19,6 @@ import java.util.Locale;
 public class WeatherFragment extends Fragment {
 
     private static final String LOG_TAG = "WeatherFragment";
-    private static final String FONT_FILENAME = "font/weathericons.ttf";
 
     private final Handler handler = new Handler();
 
@@ -38,7 +37,7 @@ public class WeatherFragment extends Fragment {
     private void updateWeatherData(final String city) {
         new Thread() {
             public void run() {
-                final JSONObject json = Weather_Data_Loader.getJSONData(getActivity(), city);
+                final JSONObject json = Weather_Data_Loader.getJSONData(city);
                 if(json == null) {
                     handler.post(new Runnable() {
                         @Override
